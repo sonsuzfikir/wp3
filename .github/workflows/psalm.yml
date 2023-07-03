@@ -3,16 +3,9 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Psalm Security Scan
+name: Static analysis
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ "master" ]
-  schedule:
-    - cron: '39 0 * * 4'
+on: [push, pull_request]
 
 permissions:
   contents: read
@@ -29,8 +22,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Psalm Security Scan
-        uses: psalm/psalm-github-security-scan@f3e6fd9432bc3e44aec078572677ce9d2ef9c287
+      - name: Psalm – Static Analysis for PHP
+        uses: psalm/psalm-github-actions@1.1.2
 
       - name: Upload Security Analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v2
